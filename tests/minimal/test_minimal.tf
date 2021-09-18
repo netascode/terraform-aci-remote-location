@@ -14,33 +14,28 @@ terraform {
 module "main" {
   source = "../.."
 
-  name = "ABC"
+  name        = "RL1"
+  hostname_ip = "1.1.1.1"
 }
 
-data "aci_rest" "fvTenant" {
-  dn = "uni/tn-ABC"
+data "aci_rest" "fileRemotePath" {
+  dn = "uni/fabric/path-${module.main.name}"
 
   depends_on = [module.main]
 }
 
-resource "test_assertions" "fvTenant" {
-  component = "fvTenant"
+resource "test_assertions" "fileRemotePath" {
+  component = "fileRemotePath"
 
   equal "name" {
     description = "name"
-    got         = data.aci_rest.fvTenant.content.name
-    want        = "ABC"
+    got         = data.aci_rest.fileRemotePath.content.name
+    want        = module.main.name
   }
 
-  equal "nameAlias" {
-    description = "nameAlias"
-    got         = data.aci_rest.fvTenant.content.nameAlias
-    want        = ""
-  }
-
-  equal "descr" {
-    description = "descr"
-    got         = data.aci_rest.fvTenant.content.descr
-    want        = ""
+  equal "host" {
+    description = "host"
+    got         = data.aci_rest.fileRemotePath.content.host
+    want        = "1.1.1.1"
   }
 }
