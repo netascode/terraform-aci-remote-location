@@ -1,6 +1,6 @@
 module "aci_remote_location" {
   source  = "netascode/remote-location/aci"
-  version = ">= 0.0.1"
+  version = ">= 0.0.2"
 
   name          = "RL1"
   description   = "My Description"
@@ -11,6 +11,6 @@ module "aci_remote_location" {
   port          = 21
   username      = "user1"
   password      = "password"
-  mgmt_epg      = "oob"
+  mgmt_epg_type = "oob"
   mgmt_epg_name = "OOB1"
 }

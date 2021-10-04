@@ -23,7 +23,7 @@ module "main" {
   port          = 21
   username      = "user1"
   password      = "password"
-  mgmt_epg      = "oob"
+  mgmt_epg_type = "oob"
   mgmt_epg_name = "OOB1"
 }
 

@@ -113,13 +113,13 @@ variable "ssh_passphrase" {
   }
 }
 
-variable "mgmt_epg" {
-  description = "Management EPG. Choices: `inb`, `oob`."
+variable "mgmt_epg_type" {
+  description = "Management EPG type. Choices: `inb`, `oob`."
   type        = string
   default     = "inb"
 
   validation {
-    condition     = contains(["inb", "oob"], var.mgmt_epg)
+    condition     = contains(["inb", "oob"], var.mgmt_epg_type)
     error_message = "Allowed values are `inb` or `oob`."
   }
 }

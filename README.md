@@ -13,7 +13,7 @@ Location in GUI:
 ```hcl
 module "aci_remote_location" {
   source  = "netascode/remote-location/aci"
-  version = ">= 0.0.1"
+  version = ">= 0.0.2"
 
   name          = "RL1"
   description   = "My Description"
@@ -24,7 +24,7 @@ module "aci_remote_location" {
   port          = 21
   username      = "user1"
   password      = "password"
-  mgmt_epg      = "oob"
+  mgmt_epg_type = "oob"
   mgmt_epg_name = "OOB1"
 }
 
@@ -59,7 +59,7 @@ module "aci_remote_location" {
 | <a name="input_ssh_private_key"></a> [ssh\_private\_key](#input\_ssh\_private\_key) | SSH private key. | `string` | `""` | no |
 | <a name="input_ssh_public_key"></a> [ssh\_public\_key](#input\_ssh\_public\_key) | SSH public key. | `string` | `""` | no |
 | <a name="input_ssh_passphrase"></a> [ssh\_passphrase](#input\_ssh\_passphrase) | SSH passphrase. | `string` | `""` | no |
-| <a name="input_mgmt_epg"></a> [mgmt\_epg](#input\_mgmt\_epg) | Management EPG. Choices: `inb`, `oob`. | `string` | `"inb"` | no |
+| <a name="input_mgmt_epg_type"></a> [mgmt\_epg\_type](#input\_mgmt\_epg\_type) | Management EPG type. Choices: `inb`, `oob`. | `string` | `"inb"` | no |
 | <a name="input_mgmt_epg_name"></a> [mgmt\_epg\_name](#input\_mgmt\_epg\_name) | Management EPG name. | `string` | `""` | no |
 
 ## Outputs
