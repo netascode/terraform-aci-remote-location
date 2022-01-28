@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -27,7 +27,7 @@ module "main" {
   mgmt_epg_name = "OOB1"
 }
 
-data "aci_rest" "fileRemotePath" {
+data "aci_rest_managed" "fileRemotePath" {
   dn = "uni/fabric/path-${module.main.name}"
 
   depends_on = [module.main]
@@ -38,55 +38,55 @@ resource "test_assertions" "fileRemotePath" {
 
   equal "name" {
     description = "name"
-    got         = data.aci_rest.fileRemotePath.content.name
+    got         = data.aci_rest_managed.fileRemotePath.content.name
     want        = module.main.name
   }
 
   equal "host" {
     description = "host"
-    got         = data.aci_rest.fileRemotePath.content.host
+    got         = data.aci_rest_managed.fileRemotePath.content.host
     want        = "1.1.1.1"
   }
 
   equal "descr" {
     description = "descr"
-    got         = data.aci_rest.fileRemotePath.content.descr
+    got         = data.aci_rest_managed.fileRemotePath.content.descr
     want        = "My Description"
   }
 
   equal "authType" {
     description = "authType"
-    got         = data.aci_rest.fileRemotePath.content.authType
+    got         = data.aci_rest_managed.fileRemotePath.content.authType
     want        = "usePassword"
   }
 
   equal "protocol" {
     description = "protocol"
-    got         = data.aci_rest.fileRemotePath.content.protocol
+    got         = data.aci_rest_managed.fileRemotePath.content.protocol
     want        = "ftp"
   }
 
   equal "remotePath" {
     description = "remotePath"
-    got         = data.aci_rest.fileRemotePath.content.remotePath
+    got         = data.aci_rest_managed.fileRemotePath.content.remotePath
     want        = "/"
   }
 
   equal "remotePort" {
     description = "remotePort"
-    got         = data.aci_rest.fileRemotePath.content.remotePort
+    got         = data.aci_rest_managed.fileRemotePath.content.remotePort
     want        = "21"
   }
 
   equal "userName" {
     description = "userName"
-    got         = data.aci_rest.fileRemotePath.content.userName
+    got         = data.aci_rest_managed.fileRemotePath.content.userName
     want        = "user1"
   }
 }
 
-data "aci_rest" "fileRsARemoteHostToEpg" {
-  dn = "${data.aci_rest.fileRemotePath.id}/rsARemoteHostToEpg"
+data "aci_rest_managed" "fileRsARemoteHostToEpg" {
+  dn = "${data.aci_rest_managed.fileRemotePath.id}/rsARemoteHostToEpg"
 
   depends_on = [module.main]
 }
@@ -96,7 +96,7 @@ resource "test_assertions" "fileRsARemoteHostToEpg" {
 
   equal "tDn" {
     description = "tDn"
-    got         = data.aci_rest.fileRsARemoteHostToEpg.content.tDn
+    got         = data.aci_rest_managed.fileRsARemoteHostToEpg.content.tDn
     want        = "uni/tn-mgmt/mgmtp-default/oob-OOB1"
   }
 }

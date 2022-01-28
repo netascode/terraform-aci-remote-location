@@ -1,6 +1,6 @@
 module "aci_remote_location" {
   source  = "netascode/remote-location/aci"
-  version = ">= 0.0.2"
+  version = ">= 0.1.0"
 
   name          = "RL1"
   description   = "My Description"

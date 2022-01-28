@@ -1,4 +1,4 @@
-resource "aci_rest" "fileRemotePath" {
+resource "aci_rest_managed" "fileRemotePath" {
   dn         = "uni/fabric/path-${var.name}"
   class_name = "fileRemotePath"
   content = {
@@ -21,8 +21,8 @@ resource "aci_rest" "fileRemotePath" {
   }
 }
 
-resource "aci_rest" "fileRsARemoteHostToEpg" {
-  dn         = "${aci_rest.fileRemotePath.dn}/rsARemoteHostToEpg"
+resource "aci_rest_managed" "fileRsARemoteHostToEpg" {
+  dn         = "${aci_rest_managed.fileRemotePath.dn}/rsARemoteHostToEpg"
   class_name = "fileRsARemoteHostToEpg"
   content = {
     tDn = var.mgmt_epg_type == "oob" ? "uni/tn-mgmt/mgmtp-default/oob-${var.mgmt_epg_name}" : "uni/tn-mgmt/mgmtp-default/inb-${var.mgmt_epg_name}"
