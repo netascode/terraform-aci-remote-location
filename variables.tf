@@ -88,12 +88,14 @@ variable "password" {
   description = "Password."
   type        = string
   default     = ""
+  sensitive   = true
 }
 
 variable "ssh_private_key" {
   description = "SSH private key."
   type        = string
   default     = ""
+  sensitive   = true
 }
 
 variable "ssh_public_key" {
@@ -106,6 +108,7 @@ variable "ssh_passphrase" {
   description = "SSH passphrase."
   type        = string
   default     = ""
+  sensitive   = true
 
   validation {
     condition     = can(regex("^.{0,512}$", var.ssh_passphrase))
