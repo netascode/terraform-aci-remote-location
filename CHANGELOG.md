@@ -1,3 +1,7 @@
+## 0.1.1 (unreleased)
+
+- Make the `password`, `ssh_private_key` and `ssh_passphrase` variables sensitive
+
 ## 0.1.0
 
 - Migrate to devnet provider
